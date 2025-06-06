@@ -1,0 +1,41 @@
+stages:
+  
+  - stage: BuildInfrastructure               # Building a  Infrastructure
+    displayName: Build Infrastructure
+    jobs:
+    - job: Buildbicep
+      displayName: Building a Infra Bicep
+      steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: $(azureSubscription)
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                echo "Validating Bicep file..."
+                az bicep build --file $(bicepFilePath)
+                echo "Bicep file compiled successfully."
+     
+
+  - stage: DeployInfrastructure               # Deploying a  Infrastructure
+    displayName: Deploy Infrastructure 
+    dependsOn: Buildbicep
+    jobs:
+    - job: DeployBicep
+      displayName: 'Deploy Bicep for ${{parameters.computename}}'
+      steps:
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptType: bash
+          scriptLocation: inlineScript
+          inlineScript: |
+            echo "Creating Resource Group: $(resourceGroupName)"
+            az group create --resource-group $(resourceGroupName) --location $(resourceLocation)
+            echo "Starting deployment..."
+            az deployment group create \
+              --resource-group $(resourceGroupName) \
+              --template-file $(bicepFilePath) \
+              --parameters @$parameter
+
+    

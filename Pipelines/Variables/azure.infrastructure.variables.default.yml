@@ -1,0 +1,7 @@
+variables:
+  bicepFilename: 'infrastructure'
+  bicepfolder: 'Infrastructure'                               
+  bicepFilePath: 'Infrastructure/infrastructure.bicep'
+  subscriptionId: 'ID of subscription'
+  azureServiceConnection: 'connectionString'
+  resourceGroupName : 'rg-erp-dev-001'

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "westeurope"
+    },
+    "computename": {
+      "value": "tamu-erp"
+    },
+    "computesku": {
+      "value": "Standard"
+    },
+    "adminLogin": {
+      "value": "root"
+    },
+    "sqlServerName": {
+      "value": "Tamu-erp-dev-sqlsvr-001"
+    },
+    "sqlDbname": {
+      "value": "Tamu-erp-dev-sqldb-001"
+    },
+    "adminPassword": {
+      "value": "tamupassword"
+    }
+  }
+}

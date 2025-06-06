@@ -1,0 +1,22 @@
+variables:
+- name: parameter
+  value: Infrastructure/Parameters/azure.infrastructure.prod.parameter.json       
+
+- name: azureServiceConnection
+  value: 'serviceConnection should be paste here'
+
+- name: resourceLocation
+  value: westeurope
+
+- name: environment
+  value: prod
+
+- name:  'web-App-Name'
+  value: '$(webAppName)'
+  
+- name: distFolder
+  value: 'build'
+  
+- name: resourceGroupName
+  value: rg-websitename-prod-001
+  

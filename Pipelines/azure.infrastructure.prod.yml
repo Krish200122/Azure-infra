@@ -1,0 +1,16 @@
+trigger:
+  branches:
+    include:
+      - master
+
+  paths:
+    include:
+       - Infrastructure/*
+       - Pipelines/*
+
+variables:
+   - template: Variables/azure.infrastructure.variables.prod.yml
+   - template: Variables/azure.infrastructure.default.yml
+
+extends:
+  template: /azure.infrastructure.shared.pipline.yml
